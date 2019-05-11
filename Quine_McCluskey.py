@@ -6,9 +6,9 @@ nvar = int(input("Input number of variables: "))
 input_outing = str(input("(If you don't want this kind of input type 0) Input Outing : "))
 input_table = str(input("(If you don't want this kind of input type 0) Input truth with in a single line : "))
 
-#outing = [0 ,1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1 ]
-#truth_table = [[0, 0, 0], [0, 0, 1], [0, 1, 1], [1, 0, 1], [1, 1, 1]]
-truth_table = [[0, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0], [0, 1, 0, 1], [1, 0, 0, 1], [1, 0, 1, 0], [1, 1, 0, 1], [1, 1, 1, 1]]
+# outing = [0 ,1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1 ]
+# truth_table = [[0, 0, 0], [0, 0, 1], [0, 1, 1], [1, 0, 1], [1, 1, 1]]
+# truth_table = [[0, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0], [0, 1, 0, 1], [1, 0, 0, 1], [1, 0, 1, 0], [1, 1, 0, 1], [1, 1, 1, 1]]
 
 idx_order = []
 difference = 0
@@ -28,9 +28,17 @@ def outing_to_truth_table(array):
             _truth_table.append(digit)
     return _truth_table
 
-#def handle_input(input_table, input_outing):
-#    if input_table == '0':
+def handle_input(input_table, input_outing):
+    if input_table == '0':
+        h_input = list(map(int, input_outing.split()))
+        return outing_to_truth_table(h_input)
+    elif input_outing == '0':
+        h_input = []
+        [h_input.append(list(map(int, i))) for i in input_table.split()]
+        return h_input
 
+
+truth_table = handle_input(input_table, input_outing)
 while True:
     idx_order = [[sum(i), truth_table.index(i)] for i in truth_table]
     for i in range(len(idx_order)):
