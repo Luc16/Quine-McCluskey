@@ -1,5 +1,5 @@
-import script_input
-# import terminal_input
+# import script_input
+import terminal_input
 idx_order = []
 difference = 0
 difference_idx = 0
@@ -20,19 +20,19 @@ def outing_to_truth_table(array):
     return _truth_table
 
 
-def handle_input(input_table, input_outing):
+def handle_input(input_table, input_table_output):
     if input_table == '0':
-        h_input = list(map(int, input_outing.split()))
+        h_input = list(map(int, input_table_output.split()))
         return outing_to_truth_table(h_input)
-    elif input_outing == '0':
+    elif input_table_output == '0':
         h_input = []
         [h_input.append(list(map(int, i))) for i in input_table.split()]
         return h_input
 
 
 if __name__ == "__main__":
-    truth_table = handle_input(script_input.input_table, script_input.input_outing)
-    # truth_table = handle_input(terminal_input.args.input_table, terminal_input.args.input_outing)
+    # truth_table = handle_input(script_input.input_table, script_input.input_table_output)
+    truth_table = handle_input(terminal_input.args.input_table, terminal_input.args.input_table_output)
     while True:
         idx_order = [[sum(i), truth_table.index(i)] for i in truth_table]
         for i in range(len(idx_order)):
