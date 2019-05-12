@@ -1,5 +1,5 @@
-# import script_input
-import terminal_input
+import script_input
+# import terminal_input
 idx_order = []
 difference = 0
 difference_idx = 0
@@ -8,7 +8,8 @@ matched_variables = []
 new_var = []
 new_truth_table = []
 final_truth_table = []
-nvar = terminal_input.args.nvar
+# nvar = terminal_input.args.nvar
+nvar = script_input.nvar
 
 
 def outing_to_truth_table(array):
@@ -30,9 +31,33 @@ def handle_input(input_table, input_table_output):
         return h_input
 
 
+def num_to_letter(final_array):
+    letter_array = []
+    final_string = ""
+    j_appended = 0
+    for letter in range(65, 65+nvar):
+        letter_array.append(chr(letter))
+    for i in range(len(final_array)):
+        for j in range(nvar):
+            if final_array[i][j] == 1:
+                if j_appended != 0:
+                    final_string += "."
+                final_string += letter_array[j]
+                j_appended += 1
+            elif final_array[i][j] == 0:
+                if j_appended != 0:
+                    final_string += "."
+                final_string = final_string+"|"+letter_array[j]
+                j_appended += 1
+        j_appended = 0
+        if i != (len(final_array) - 1):
+            final_string += " + "
+    return final_string
+
+
 if __name__ == "__main__":
-    # truth_table = handle_input(script_input.input_table, script_input.input_table_output)
-    truth_table = handle_input(terminal_input.args.input_table, terminal_input.args.input_table_output)
+    truth_table = handle_input(script_input.input_table, script_input.input_table_output)
+    # truth_table = handle_input(terminal_input.args.input_table, terminal_input.args.input_table_output)
     while True:
         idx_order = [[sum(i), truth_table.index(i)] for i in truth_table]
         for i in range(len(idx_order)):
@@ -61,4 +86,4 @@ if __name__ == "__main__":
             break
         truth_table = new_truth_table
         new_truth_table = []
-    print(final_truth_table)
+    print(num_to_letter(final_truth_table))
