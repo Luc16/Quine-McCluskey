@@ -1,4 +1,5 @@
 import argparse
+import Quine_McCluskey as qm
 
 parser = argparse.ArgumentParser(
     description='''"First type the number of variables.
@@ -9,3 +10,8 @@ parser.add_argument('nvar', type=int, default=0, help='Number of variables')
 parser.add_argument('input_table_output', type=str, default='0', help='If you want to input the truth table output')
 parser.add_argument('input_table', type=str, default='0', help='If you want to input the truth table ones')
 args = parser.parse_args()
+
+if __name__ == '__main__':
+    input_1 = qm.handle_input(args.nvar, args.input_table, args.input_table_output)
+    quine = qm.quine_mccluskey(args.nvar, input_1)
+    print(qm.num_to_letter(args.nvar, quine))

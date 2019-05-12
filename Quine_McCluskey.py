@@ -1,18 +1,8 @@
-import script_input
+#import script_input
 # import terminal_input
-idx_order = []
-difference = 0
-difference_idx = 0
-new_additions = 0
-matched_variables = []
-new_var = []
-new_truth_table = []
-final_truth_table = []
-# nvar = terminal_input.args.nvar
-nvar = script_input.nvar
 
 
-def outing_to_truth_table(array):
+def outing_to_truth_table(nvar, array):
     _truth_table = []
     for i in range(len(array)):
         if array[i] == 1:
@@ -21,17 +11,17 @@ def outing_to_truth_table(array):
     return _truth_table
 
 
-def handle_input(input_table, input_table_output):
+def handle_input(nvar, input_table, input_table_output):
     if input_table == '0':
         h_input = list(map(int, input_table_output.split()))
-        return outing_to_truth_table(h_input)
+        return outing_to_truth_table(nvar, h_input)
     elif input_table_output == '0':
         h_input = []
         [h_input.append(list(map(int, i))) for i in input_table.split()]
         return h_input
 
 
-def num_to_letter(final_array):
+def num_to_letter(nvar, final_array):
     letter_array = []
     final_string = ""
     j_appended = 0
@@ -55,9 +45,16 @@ def num_to_letter(final_array):
     return final_string
 
 
-if __name__ == "__main__":
-    truth_table = handle_input(script_input.input_table, script_input.input_table_output)
-    # truth_table = handle_input(terminal_input.args.input_table, terminal_input.args.input_table_output)
+# truth_table = handle_input(script_input.input_table, script_input.input_table_output)
+def quine_mccluskey(nvar, truth_table):
+    idx_order = []
+    difference = 0
+    difference_idx = 0
+    new_additions = 0
+    matched_variables = []
+    new_var = []
+    new_truth_table = []
+    final_truth_table = []
     while True:
         idx_order = [[sum(i), truth_table.index(i)] for i in truth_table]
         for i in range(len(idx_order)):
@@ -86,4 +83,14 @@ if __name__ == "__main__":
             break
         truth_table = new_truth_table
         new_truth_table = []
-    print(num_to_letter(final_truth_table))
+
+    return final_truth_table
+
+
+if __name__ == "__main__":
+    nvar = 2
+    _to = [0, 1, 0, 1]
+    tt = [[0, 1], [1, 1]]
+    to = outing_to_truth_table(nvar, _to)
+    qm = quine_mccluskey(nvar, tt)
+    print(num_to_letter(nvar, qm))
