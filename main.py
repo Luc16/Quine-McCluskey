@@ -1,6 +1,7 @@
 import datetime
+import Quine_McCluskey as qm
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -9,12 +10,21 @@ app = Flask(__name__)
 def root():
     # For the sake of example, use static information to inflate the template.
     # This will be replaced with real information in later steps.
-    dummy_times = [datetime.datetime(2018, 1, 1, 10, 0, 0),
-                   datetime.datetime(2018, 1, 2, 10, 30, 0),
-                   datetime.datetime(2018, 1, 3, 11, 0, 0),
-                   ]
+    #qm_test = qm.quine_mccluskey(2, [[0, 1], [1, 1]])
 
-    return render_template('qm.html', times=dummy_times)
+    return render_template('initial_page.html')
+
+
+@app.route('/pagina-processa-dados-do-form', methods=['POST', 'GET'])
+def root1():
+    if request.method == 'POST':
+        result = request.form
+        nvar = int(result['nvar'])
+        table_ones = result['truth_table']
+        table_output = result['table_output']
+        handle = qm.handle_input(nvar, table_ones, table_output)
+        qm_test = qm.num_to_letter(nvar, qm.quine_mccluskey(nvar, handle))
+        return render_template("results.html", qm=qm_test)
 
 
 if __name__ == '__main__':

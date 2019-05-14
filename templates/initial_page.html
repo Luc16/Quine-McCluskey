@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <title>Quine McCluskey - Luc</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>Quine McCluskey - Luc</h1>
+
+  <form action="/pagina-processa-dados-do-form" method="post">
+    <div>
+      <label for="nvar">Number of variables:</label>
+      <input type="text" id="nvar" name="nvar" />
+    </div>
+    <div>
+      <label for="truthtable">Input truth table ones:</label>
+      <input type="text" id="truthtable" name="truth_table" />
+    </div>
+    <div>
+      <label for="tableresults">Input truth table results:</label>
+      <input type="text" id="tableresults" name="table_output" />
+    </div>
+    <div class="button">
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+
+</body>
+</html>
