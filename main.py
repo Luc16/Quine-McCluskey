@@ -15,7 +15,7 @@ def root():
     return render_template('initial_page.html')
 
 
-@app.route('/pagina-processa-dados-do-form', methods=['POST', 'GET'])
+@app.route('/results', methods=['POST', 'GET'])
 def root1():
     if request.method == 'POST':
         result = request.form

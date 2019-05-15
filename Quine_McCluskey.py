@@ -12,10 +12,11 @@ def outing_to_truth_table(nvar, array):
 
 
 def handle_input(nvar, input_table, input_table_output):
-    if input_table == '0':
+    print("input table >", input_table,"< input_table_output >", input_table_output, "<")
+    if input_table == '':
         h_input = list(map(int, input_table_output.split()))
         return outing_to_truth_table(nvar, h_input)
-    elif input_table_output == '0':
+    elif input_table_output == '':
         h_input = []
         [h_input.append(list(map(int, i))) for i in input_table.split()]
         return h_input

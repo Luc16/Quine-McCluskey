@@ -9,17 +9,18 @@
 
   <h1>Quine McCluskey - Luc</h1>
 
-  <form action="/pagina-processa-dados-do-form" method="post">
+  <form action="/results" method="post">
+    <p>Primeiro entre o número de variáveis.<br>Depos entre a saída de uma tabela da verdade ou os uns tabela da verdade.<br>Para a saída escreva no seguinte formato: '1 0 1 0 1 0 1 0'<br>Para a tabela escreva no seguinte formato '000 001 010'</p>
     <div>
-      <label for="nvar">Number of variables:</label>
+      <label for="nvar">Número de variáveis:</label>
       <input type="text" id="nvar" name="nvar" />
     </div>
     <div>
-      <label for="truthtable">Input truth table ones:</label>
+      <label for="truthtable">Entre os uns da tabela da verdade:</label>
       <input type="text" id="truthtable" name="truth_table" />
     </div>
     <div>
-      <label for="tableresults">Input truth table results:</label>
+      <label for="tableresults">Entre a saída da tabela:</label>
       <input type="text" id="tableresults" name="table_output" />
     </div>
     <div class="button">
