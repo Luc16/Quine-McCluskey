@@ -55,3 +55,4 @@ And the truth table represents the combinations that result in ones.
 ## Author
 
 Luc Joffily Ribas
+[mail](luc.joffily.ribas@gmail.com)
